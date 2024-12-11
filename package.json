@@ -1,0 +1,33 @@
+{
+    "name": "electron-app-demo",
+    "version": "1.0.0",
+    "description": "",
+    "main": "electron/main.js",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "electron:start": "electron-forge start",
+        "electron:package": "electron-forge package",
+        "electron:make": "electron-forge make"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@electron-forge/cli": "^7.6.0",
+        "autoprefixer": "^10.4.20",
+        "electron": "^33.2.1",
+        "postcss-import": "^16.1.0",
+        "prettier": "^3.4.2",
+        "prettier-plugin-tailwindcss": "^0.6.9",
+        "sass": "^1.82.0",
+        "tailwindcss": "^3.4.16",
+        "vite": "^6.0.3"
+    },
+    "dependencies": {
+        "@vitejs/plugin-vue": "^5.2.1",
+        "vue": "^3.5.13"
+    }
+}
