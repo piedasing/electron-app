@@ -7,8 +7,8 @@ const createWindow = () => {
         devTools: true,
     });
 
-    // win.loadURL('http://127.0.0.1:5173/');
-    win.loadFile('dist/production/index.html');
+    win.loadURL('http://127.0.0.1:5173/');
+    // win.loadFile('dist/production/index.html');
 };
 
 app.whenReady().then(() => {

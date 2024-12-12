@@ -1,7 +1,11 @@
-<script setup></script>
+<script setup>
+import * as Layouts from './layouts/index.js';
+</script>
 
 <template>
-    <div class="text-3xl text-blue-500">App</div>
+    <Layouts.Default>
+        <router-view></router-view>
+    </Layouts.Default>
 </template>
 
 <style lang="scss" scoped></style>
