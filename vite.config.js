@@ -13,7 +13,7 @@ export default defineConfig(({ root, mode }) => {
     return {
         root,
         mode,
-        base: './',
+        base: mode === 'production' ? '/electron-app/' : './',
         server: {
             host: '127.0.0.1',
         },
