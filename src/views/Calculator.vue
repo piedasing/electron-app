@@ -1,10 +1,12 @@
 <script setup>
-import { ref, reactive, computed, nextTick } from 'vue';
+import { ref, reactive, computed, nextTick, watch } from 'vue';
 import dayjs from 'dayjs';
 
 const formData = reactive({
-    dateTimeRange: ['', ''],
+    // dateTimeRange: ['', ''],
     // dateTimeRange: ['2024-12-01 20:00', '2024-12-20 06:00'],
+    dateTimeS: '',
+    dateTimeE: '',
 });
 
 const isLoading = ref(false);
@@ -58,12 +60,20 @@ const onQuery = async () => {
     isLoading.value = true;
     activities.value = [];
 
-    const [dateTimeS, dateTimeE] = formData.dateTimeRange;
-
+    let { dateTimeS, dateTimeE } = formData;
     if (!dateTimeS || !dateTimeE) {
         isLoading.value = false;
         return;
     }
+
+    // 檢查日期先後，調整啟始結束日
+    if (dayjs(dateTimeS).isAfter(dateTimeE)) {
+        [dateTimeS, dateTimeE] = [dateTimeE, dateTimeS];
+    } else if (dayjs(dateTimeE).isBefore(dateTimeS)) {
+        [dateTimeE, dateTimeS] = [dateTimeS, dateTimeE];
+    }
+    formData.dateTimeS = dateTimeS;
+    formData.dateTimeE = dateTimeE;
 
     const dateS = dayjs(dateTimeS).format('YYYY-MM-DD');
     const dateE = dayjs(dateTimeE).format('YYYY-MM-DD');
@@ -95,7 +105,7 @@ const onQuery = async () => {
             }
         }
         if (originPrice > 200) {
-            priceCalcProcess += '<br>超過每日上限 200 元，以 200 元計算';
+            priceCalcProcess += '<br>超過每日上限 200 元，以 200 元計';
         }
 
         await sleep(600);
@@ -135,16 +145,25 @@ const scrollToBottom = () => {
 
 <template>
     <div class="tw-max-w-[600px] tw-pb-20">
-        <div class="tw-mb-4 tw-flex tw-gap-x-4">
+        <div class="tw-mb-4 tw-flex tw-items-center">
             <el-date-picker
-                v-model="formData.dateTimeRange"
-                type="datetimerange"
-                :start-placeholder="'起始日期'"
-                :end-placeholder="'結束日期'"
+                class="tw-flex-1"
+                v-model="formData.dateTimeS"
+                type="datetime"
+                :placeholder="'起始日期'"
                 :format="'YYYY-MM-DD HH:mm'"
-                :value-format="'YYYY-MM-DD HH:mm:00'"
-                unlink-panels />
-            <el-button type="primary" @click="onQuery">
+                :value-format="'YYYY-MM-DD HH:mm:00'" />
+            <span class="tw-flex-none tw-px-2">-</span>
+            <el-date-picker
+                class="tw-flex-1"
+                v-model="formData.dateTimeE"
+                type="datetime"
+                :placeholder="'結束日期'"
+                :format="'YYYY-MM-DD HH:mm'"
+                :value-format="'YYYY-MM-DD HH:mm:00'" />
+        </div>
+        <div class="tw-mb-4">
+            <el-button class="tw-w-full" type="primary" @click="onQuery">
                 <el-icon :size="16">
                     <Search />
                 </el-icon>
