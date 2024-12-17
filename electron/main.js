@@ -17,9 +17,12 @@ const createWindow = () => {
     });
 
     // mainWindow.loadURL('http://127.0.0.1:5173/');
-    mainWindow.loadFile(path.join(__dirname, 'dist/production/index.html'));
+    mainWindow.loadURL('https://piedasing.github.io/electron-app/');
+    // mainWindow.loadFile(
+    //     path.join(__dirname, 'resources/app/dist/electron/index.html'),
+    // );
 
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {

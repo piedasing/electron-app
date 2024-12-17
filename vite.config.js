@@ -36,7 +36,7 @@ export default defineConfig(({ root, mode }) => {
             },
         },
         build: {
-            outDir: `dist/${mode}`,
+            outDir: `dist/${mode}${publicPath}`,
         },
         plugins: [
             AutoImport({
