@@ -8,12 +8,16 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
+import { htmlPlugin } from './vite.plugin.js';
+
 // https://vitejs.dev/config
 export default defineConfig(({ root, mode }) => {
+    const publicPath = mode === 'production' ? '/electron-app/' : '/';
+
     return {
         root,
         mode,
-        base: mode === 'production' ? '/electron-app/' : './',
+        base: publicPath,
         server: {
             host: '127.0.0.1',
         },
@@ -42,6 +46,10 @@ export default defineConfig(({ root, mode }) => {
                 resolvers: [ElementPlusResolver()],
             }),
             vue(),
+            htmlPlugin({
+                publicPath,
+                title: '大心 Web APP',
+            }),
         ],
         clearScreen: false,
     };
