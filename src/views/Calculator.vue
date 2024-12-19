@@ -150,6 +150,7 @@ const scrollToBottom = () => {
                 class="tw-flex-1"
                 v-model="formData.dateTimeS"
                 type="datetime"
+                :editable="false"
                 :placeholder="'起始日期'"
                 :format="'YYYY-MM-DD HH:mm'"
                 :value-format="'YYYY-MM-DD HH:mm:00'" />
@@ -158,6 +159,7 @@ const scrollToBottom = () => {
                 class="tw-flex-1"
                 v-model="formData.dateTimeE"
                 type="datetime"
+                :editable="false"
                 :placeholder="'結束日期'"
                 :format="'YYYY-MM-DD HH:mm'"
                 :value-format="'YYYY-MM-DD HH:mm:00'" />
