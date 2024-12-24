@@ -32,7 +32,7 @@
     },
     "dependencies": {
         "@element-plus/icons-vue": "^2.3.1",
-        "@pieda/core": "^0.6.3",
+        "@pieda/core": "^0.7.1",
         "@vitejs/plugin-vue": "^5.2.1",
         "dayjs": "^1.11.13",
         "element-plus": "^2.9.0",
