@@ -1,25 +1,26 @@
 {
-    "name": "electron-app-demo",
+    "name": "dashine-web-app",
     "version": "1.0.0",
-    "description": "",
     "main": "electron/main.js",
     "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "electron:start": "electron-forge start",
+        "electron:start": "env-cmd -f .env.development electron-forge start",
         "electron:package": "electron-forge package",
         "electron:make": "electron-forge make",
-        "deploy": "npm run build && gh-pages -d dist/production"
+        "deploy:gh": "npm run build && gh-pages -d dist/production",
+        "build:app": "vite build --mode electron && electron-forge package"
     },
     "keywords": [],
-    "author": "",
+    "author": "piedasing",
     "license": "ISC",
     "devDependencies": {
         "@electron-forge/cli": "^7.6.0",
         "autoprefixer": "^10.4.20",
         "electron": "^33.2.1",
+        "env-cmd": "^10.1.0",
         "gh-pages": "^6.2.0",
         "postcss-import": "^16.1.0",
         "prettier": "^3.4.2",
@@ -51,5 +52,6 @@
         "!.github",
         "!.vscode",
         "!node_modules/*"
-    ]
+    ],
+    "description": ""
 }

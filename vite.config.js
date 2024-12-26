@@ -12,7 +12,10 @@ import { htmlPlugin } from './vite.plugin.js';
 
 // https://vitejs.dev/config
 export default defineConfig(({ root, mode }) => {
-    const publicPath = mode === 'production' ? '/electron-app/' : '/';
+    let publicPath = mode === 'production' ? '/electron-app/' : '/';
+    if (mode === 'electron') {
+        publicPath = './';
+    }
 
     return {
         root,
@@ -36,7 +39,7 @@ export default defineConfig(({ root, mode }) => {
             },
         },
         build: {
-            outDir: `dist/${mode}`,
+            outDir: `dist`,
         },
         plugins: [
             AutoImport({
